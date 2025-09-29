@@ -22,7 +22,7 @@ DOCXTEMP/
    
 2. Встановить залежності:
    ```bash
-   npm install/npm i
+   npm install
 
 ## Шаблон Word
 Файл шаблона лежить в ``` shema/shema.docx ```

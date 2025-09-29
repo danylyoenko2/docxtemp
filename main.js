@@ -13,8 +13,10 @@ const doc = new Docxtemplatr(zip, {
 
 const run = async () => {
   const data = await inquirer.prompt([
+    { name: "Учень", message: "Введіть своє ім'я та фамілію:" },
     { name: "Дисципліна", message: "Введіть дисципліну:" },
     { name: "Тема", message: "Введіть тему:" },
+    { name: "Варіант", message: "Введіть свій варіант:" },
     { name: "НомерЛР", message: "Номер ЛР:" },
     { name: "Професор", message: "Введіть професора:" },
     { name: "НазваЛР", message: "Введіть назву ЛР:" },
@@ -27,7 +29,7 @@ const run = async () => {
   }
   const buf = doc.toBuffer();
   fs.writeFileSync(`output/${data.НазваЛР}.docx`, buf);
-  console.log("Успішно створена титулка!");
+  console.log("Титулка успішно створена!");
 };
 
 run();

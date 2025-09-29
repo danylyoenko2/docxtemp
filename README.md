@@ -18,7 +18,7 @@ DOCXTEMP/
 ## Встановлення
 1. Склонувати репозиторій:
    ```bash
-   git clone https://github.com/danylyoenko2/docxtemplate.git
+   git clone https://github.com/danylyoenko2/docxtemp.git
    
 2. Встановить залежності:
    ```bash

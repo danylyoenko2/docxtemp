@@ -2,6 +2,7 @@ import fs from "fs";
 import pizZip from "pizzip";
 import Docxtemplatr from "docxtemplater";
 import inquirer from "inquirer";
+import { exec } from "child_process";
 
 const content = fs.readFileSync("shema/shema.docx", "binary");
 
@@ -23,16 +24,29 @@ const run = async () => {
     { name: "Викладач", message: "Введіть ім'я та фамілію професора:" },
     { name: "ВикладачСТ", message: "Введіть стать викладача(Викладач/ка):" },
     { name: "НазваЛР", message: "Введіть назву ЛР:" },
+    {
+      name: "openLibreoffice",
+      message:
+        "(Linux only) Відкрити libre office відразу після створення титулки(т/н)",
+    },
   ]);
+
+  const userAgent = process.platform;
 
   try {
     doc.render(data);
   } catch (error) {
     console.log(`Помилка при створені титулки! ${error}`);
   }
+
   const buf = doc.toBuffer();
   fs.writeFileSync(`output/${data.НазваЛР}.docx`, buf);
   console.log("Титулка успішно створена!");
+
+  if (data.openLibreoffice.toLowerCase() === "т" && userAgent === "linux") {
+    exec(`libreoffice --writer 'output/${data.НазваЛР}.docx'`);
+    console.log("Відкриваємо титулку...");
+  }
 };
 
 run();
